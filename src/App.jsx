@@ -5,6 +5,8 @@ import "aos/dist/aos.css";
 
 import "./App.css";
 
+import ProtectedRoute from "./routes/ProtectedRoute";
+
 // Layout
 import Header from "./layout/Header";
 import Footer from "./layout/Footer";
@@ -39,16 +41,22 @@ function App() {
       <ScrollToTop />
 
       <Routes>
+        {/* Public routes */}
         <Route path="/" element={<Homepage />} />
         <Route path="/careers" element={<Careers />} />
         <Route path="/aboutpage" element={<AboutPage />} />
         <Route path="/services" element={<ServicesPage />} />
-        <Route path="/servicesdetailpage" element={<ServiceDetailPage />} />
         <Route path="/blog" element={<BlogPage />} />
-        <Route path="/blogdetailpage" element={<BlogDetailPage />} />
         <Route path="/contact" element={<ContactPage />} />
-        <Route path="/portfolio" element={<PortfolioPage />} />
+
+        {/* Protected routes */}
+        <Route element={<ProtectedRoute />}>
+          <Route path="/servicesdetailpage" element={<ServiceDetailPage />} />
+          <Route path="/blogdetailpage" element={<BlogDetailPage />} />
+          <Route path="/portfolio" element={<PortfolioPage />} />
+        </Route>
       </Routes>
+
 
       <Footer />
     </>

@@ -3,6 +3,8 @@ import PageHeader from "../layout/PageHeader";
 import Careerimg from "../assets/img/careerimg.webp"
 import { Button } from "react-bootstrap";
 import { useState } from "react";
+import CareersTimeline from "../component/CareerTimeline";
+import CareerForm from "../component/CareerForm";
 let Careers = () => {
     let Navigate = useNavigate();
     const [experience, setExperience] = useState("");
@@ -194,7 +196,7 @@ let Careers = () => {
             </section>
 
             {/* job */}
-            <section className="service-details-section">
+            {/* <section className="service-details-section">
                 <div className="container">
                     <div className="row">
                         <div className="col-lg-12">
@@ -244,7 +246,8 @@ let Careers = () => {
                         </div>
                     </div>
                 </div>
-            </section>
+            </section> */}
+            <CareersTimeline />
 
             {/* //  < !--Contact Section-- > */}
             <section className="contact-section" id="career-form">
@@ -272,7 +275,7 @@ let Careers = () => {
                         </div>
 
                         {/* <!-- Contact Form --> */}
-                        <div class="col-lg-7" data-aos="fade-left">
+                        {/* <div class="col-lg-7" data-aos="fade-left">
                             <div class="contact-form-wrapper">
                                 <h3 class="form-title">(Note- This is only Career Related Form)</h3>
                                 <form class="contact-form">
@@ -314,7 +317,6 @@ let Careers = () => {
                                         </div>
                                         {experience === "Experienced" && (
                                             <>
-                                                {/* Experience */}
                                                 <div className="col-md-6 col-12">
                                                     <div className="form-group">
                                                         <label>Total Experience (Years)</label>
@@ -341,7 +343,6 @@ let Careers = () => {
                                                     </div>
                                                 </div>
 
-                                                {/* Salary */}
                                                 <div className="col-md-6 col-12">
                                                     <div className="form-group">
                                                         <label>Current Salary</label>
@@ -413,7 +414,11 @@ let Careers = () => {
                                     </div>
                                 </form>
                             </div>
-                        </div>
+                        </div> */}
+
+                        <CareerForm />
+
+
                     </div>
                 </div>
             </section>

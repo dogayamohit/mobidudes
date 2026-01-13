@@ -46,7 +46,7 @@
   --text-light: #d4dae3;
   --text-muted: #8b99a8;
   --text-dark: #0a1628;
-  --clientvalue: #ffffffec;
+  --clientvalue: #f1f1f1e7;
   /* Gradients */
   --gradient-primary: linear-gradient(180deg, var(--primary-dark) 0%, var(--primary-darker) 100%);
   --gradient-accent: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-cyan-light) 100%);
@@ -85,7 +85,7 @@
 
 .light-theme {
   --primary-dark: #ffffff;
-  --primary-darker: #f0f0f0;
+  --primary-darker: #ecebeb;
   --primary-navy: #e6e6e6;
   --primary-blue: #dcdcdc;
   --footer-header-color: #ffffff;
@@ -1086,6 +1086,7 @@ button.icon-toggle {
   color: var(--text-muted);
   line-height: 1.8;
   margin-bottom: 25px;
+  min-height: 75px;
 }
 
 .testimonial-author {
@@ -1100,6 +1101,16 @@ button.icon-toggle {
   font-weight: 600;
   color: var(--text-white);
   display: block;
+}
+
+.author-image {
+  width: 45px;
+  height: 45px;
+  margin-right: 5px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+
 }
 
 .author-role {
@@ -1241,7 +1252,7 @@ button.icon-toggle {
    CTA SECTION
    ============================================ */
 .cta-section {
-  padding: var(--section-padding) 0 60px;
+  padding: var(--section-padding) 60px 80px;
   background: var(--primary-darker);
   position: relative;
   overflow: hidden;
@@ -1264,17 +1275,16 @@ button.icon-toggle {
   font-weight: 500;
   font-style: italic;
   color: var(--text-white);
-  margin-bottom: 20px;
+  margin-bottom: 45px;
 }
 
 .cta-text {
   font-family: var(--font-body);
-  font-size: 17px;
+  font-size: 16px;
   /* color: white; */
-  /* max-width: 550px; */
+  /* max-width: 1100px; */
   color: var(--clientvalue);
-
-  margin: 0 auto 0px;
+  margin: 10px auto 0px;
   line-height: 1.7;
 }
 
@@ -4140,6 +4150,10 @@ button.icon-toggle {
 .author-avatar i {
   font-size: 36px;
   color: var(--accent-cyan);
+}
+
+.author-info {
+  display: flex;
 }
 
 .author-info h4 {
