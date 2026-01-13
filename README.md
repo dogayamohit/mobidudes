@@ -47,19 +47,13 @@ mobidudes_ui/
 git clone https://github.com/dogayamohit/mobidudes.git
 ```
 
-### 2️⃣ Navigate to the project folder
-
-```bash
-cd mobidudes_ui
-```
-
-### 3️⃣ Install dependencies
+### 2️⃣ Install dependencies
 
 ```bash
 npm install
 ```
 
-### 4️⃣ Run the development server
+### 3️⃣ Run the development server
 
 ```bash
 npm run dev
@@ -77,12 +71,6 @@ http://localhost:5173
 
 ```bash
 npm run build
-```
-
-Preview the production build:
-
-```bash
-npm run preview
 ```
 
 ---
@@ -131,12 +119,6 @@ Contributions are welcome!
 
 ---
 
-## 📄 License
-
-This project is licensed under the **MIT License**.
-
----
-
 ## 👨‍💻 Author
 
 **Mohit Dogaya**
@@ -145,5 +127,3 @@ GitHub: [@dogayamohit](https://github.com/dogayamohit)
 ---
 
 ⭐ If you like this project, don’t forget to star the repo!
-
-```
