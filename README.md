@@ -1,16 +1,149 @@
-# React + Vite
+````md
+# Mobidudes UI
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Mobidudes UI is a modern frontend application built using **React**.  
+This project serves as the user interface for the Mobidudes platform, focusing on performance, scalability, and clean UI/UX.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Tech Stack
 
-## React Compiler
+- **React**
+- **JavaScript (ES6+)**
+- **HTML5**
+- **CSS3**
+- **Vite** (if applicable)
+- **React Router**
+- **Axios / Fetch API**
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 📂 Project Structure
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```text
+mobidudes_ui/
+├── public/
+├── src/
+│   ├── assets/
+│   ├── components/
+│   ├── pages/
+│   ├── layout/
+│   ├── services/
+│   ├── App.jsx
+│   ├── main.jsx
+│   └── index.css
+├── package.json
+├── README.md
+└── vite.config.js
+````
+
+---
+
+## 🛠️ Installation & Setup
+
+### 1️⃣ Clone the repository
+
+```bash
+git clone https://github.com/dogayamohit/mobidudes.git
+```
+
+### 2️⃣ Navigate to the project folder
+
+```bash
+cd mobidudes_ui
+```
+
+### 3️⃣ Install dependencies
+
+```bash
+npm install
+```
+
+### 4️⃣ Run the development server
+
+```bash
+npm run dev
+```
+
+The app will be available at:
+
+```
+http://localhost:5173
+```
+
+---
+
+## 📦 Build for Production
+
+```bash
+npm run build
+```
+
+Preview the production build:
+
+```bash
+npm run preview
+```
+
+---
+
+## ✨ Features
+
+* Responsive UI
+* Component-based architecture
+* Clean folder structure
+* Easy API integration
+* Scalable and maintainable codebase
+
+---
+
+## 🔒 Environment Variables
+
+Create a `.env` file in the root directory if required:
+
+```env
+VITE_API_BASE_URL=https://api.example.com
+```
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome!
+
+1. Fork the repository
+2. Create a feature branch
+
+   ```bash
+   git checkout -b feature/new-feature
+   ```
+3. Commit changes
+
+   ```bash
+   git commit -m "Add new feature"
+   ```
+4. Push to the branch
+
+   ```bash
+   git push origin feature/new-feature
+   ```
+5. Open a Pull Request
+
+---
+
+## 📄 License
+
+This project is licensed under the **MIT License**.
+
+---
+
+## 👨‍💻 Author
+
+**Mohit Dogaya**
+GitHub: [@dogayamohit](https://github.com/dogayamohit)
+
+---
+
+⭐ If you like this project, don’t forget to star the repo!
+
+```
