@@ -23,9 +23,16 @@ let Header = () => {
 
     const closeNavbar = () => {
         const navbar = document.getElementById("navbarNav");
-        const bsCollapse = Collapse.getInstance(navbar);
-        bsCollapse && bsCollapse.hide();
+        if (!navbar) return;
+
+        const bsCollapse = new Collapse(navbar, {
+            toggle: false, // VERY IMPORTANT
+        });
+
+        bsCollapse.hide();
     };
+
+
 
     let Navigate = useNavigate();
     useEffect(() => {
@@ -65,7 +72,9 @@ let Header = () => {
                         </a>
 
                         {/* Mobile Toggle */}
-                        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav"
+                            aria-expanded="false"
+                            aria-label="Toggle navigation">
                             <span className="navbar-toggler-icon"></span>
                         </button>
 

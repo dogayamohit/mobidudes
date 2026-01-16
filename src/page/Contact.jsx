@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import PageHeader from "../layout/PageHeader";
+import ContactForm from "../component/Contact/ContactForm";
 let Contactpage = () => {
     let Navigate = useNavigate()
     return (
@@ -65,7 +66,7 @@ let Contactpage = () => {
                         </div>
 
                         {/* <!-- Contact Form --> */}
-                        <div class="col-lg-7" data-aos="fade-left">
+                        {/* <div class="col-lg-7" data-aos="fade-left">
                             <div class="contact-form-wrapper">
                                 <h3 class="form-title">(Note- This is only Business Related Form)</h3>
                                 <form class="contact-form">
@@ -145,7 +146,9 @@ let Contactpage = () => {
                                     </div>
                                 </form>
                             </div>
-                        </div>
+                        </div> */}
+
+                        <ContactForm />
                     </div>
                 </div>
             </section>

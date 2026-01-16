@@ -51,7 +51,7 @@ function App() {
 
         {/* Protected routes */}
         <Route element={<ProtectedRoute />}>
-          <Route path="/servicesdetailpage" element={<ServiceDetailPage />} />
+          <Route path="/servicesdetailpage/:id" element={<ServiceDetailPage />} />
           <Route path="/blogdetailpage" element={<BlogDetailPage />} />
           <Route path="/portfolio" element={<PortfolioPage />} />
         </Route>

@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import PageHeader from "../layout/PageHeader";
+import ServicesCard from "../component/Service/ServicesCard";
 let Servicespage = () => {
     let Navigate = useNavigate()
     return (
@@ -37,10 +38,9 @@ let Servicespage = () => {
             </section>
 
             {/* <!-- Services Grid --> */}
-            <section className="services-page-section">
+            {/* <section className="services-page-section">
                 <div className="container">
                     <div className="row g-4 justify-content-center">
-                        {/* <!-- Service 1 --> */}
                         <div className="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
                             <div className="service-page-card">
                                 <div className="service-page-icon">
@@ -53,7 +53,6 @@ let Servicespage = () => {
                             </div>
                         </div>
 
-                        {/* <!-- Service 2 --> */}
                         <div className="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
                             <div className="service-page-card">
                                 <div className="service-page-icon">
@@ -66,7 +65,6 @@ let Servicespage = () => {
                             </div>
                         </div>
 
-                        {/* <!-- Service 3 --> */}
                         <div className="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
                             <div className="service-page-card">
                                 <div className="service-page-icon">
@@ -79,7 +77,6 @@ let Servicespage = () => {
                             </div>
                         </div>
 
-                        {/* <!-- Service 4 --> */}
                         <div className="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
                             <div className="service-page-card">
                                 <div className="service-page-icon">
@@ -93,7 +90,6 @@ let Servicespage = () => {
                         </div>
 
 
-                        {/* <!-- Service 5--> */}
                         <div className="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
                             <div className="service-page-card">
                                 <div className="service-page-icon">
@@ -110,7 +106,9 @@ let Servicespage = () => {
                         </div>
                     </div>
                 </div>
-            </section>
+            </section> */}
+
+            <ServicesCard />
 
             {/* <!-- Process Section --> */}
             <section className="process-section">
