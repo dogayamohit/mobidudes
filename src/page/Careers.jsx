@@ -12,7 +12,7 @@ let Careers = () => {
     const [expMonths, setExpMonths] = useState("");
     const [currentSalary, setCurrentSalary] = useState("");
     const [expectedSalary, setExpectedSalary] = useState("");
-        const [selectedVacancyId, setSelectedVacancyId] = useState("");
+    const [selectedVacancyId, setSelectedVacancyId] = useState("");
 
     return (
         <>
@@ -282,7 +282,7 @@ let Careers = () => {
                             </div>
                         </div>
 
-                        {/* <!-- Career Form --> */}                        
+                        {/* <!-- Career Form --> */}
                         {/* <CareerForm /> */}
                         <CareerForm selectedVacancyId={selectedVacancyId} />
 
