@@ -24,6 +24,9 @@ import PortfolioPage from "./page/Portfolio";
 
 // Hooks
 import ScrollToTop from "./hook/scrooltop";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 function App() {
   useEffect(() => {
@@ -40,6 +43,18 @@ function App() {
       <Header />
       <ScrollToTop />
 
+      {/* 🔔 Toast Container */}
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        pauseOnHover
+        draggable
+        theme="light"
+      />
+
       <Routes>
         {/* Public routes */}
         <Route path="/" element={<Homepage />} />
@@ -52,7 +67,7 @@ function App() {
         {/* Protected routes */}
         <Route element={<ProtectedRoute />}>
           <Route path="/servicesdetailpage/:id" element={<ServiceDetailPage />} />
-          <Route path="/blogdetailpage" element={<BlogDetailPage />} />
+          <Route path="/blogdetailpage/:id" element={<BlogDetailPage />} />
           <Route path="/portfolio" element={<PortfolioPage />} />
         </Route>
       </Routes>

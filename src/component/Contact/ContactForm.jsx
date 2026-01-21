@@ -3,6 +3,7 @@ import {
     getServiceCategories,
     submitContactForm
 } from "../../api/contact";
+import { toast } from "react-toastify";
 
 const ContactForm = () => {
     const [services, setServices] = useState([]);
@@ -61,18 +62,18 @@ const ContactForm = () => {
         const correctAnswer = captcha.a + captcha.b;
 
         if (Number(form.answer) !== correctAnswer) {
-            alert("Wrong captcha answer");
+            toast.error("Wrong captcha answer");
             generateCaptcha();
             return;
         }
 
         if (!form.image) {
-            alert("Please upload image");
+            toast.error("Please upload image");
             return;
         }
 
         if (!serviceId) {
-            alert("Please select service");
+            toast.error("Please select service");
             return;
         }
 
@@ -89,7 +90,7 @@ const ContactForm = () => {
         try {
             setLoading(true);
             await submitContactForm(formData);
-            alert("Contact form submitted successfully");
+            toast.success("Contact form submitted successfully");
 
             setForm({
                 name: "",
@@ -107,7 +108,7 @@ const ContactForm = () => {
 
         } catch (err) {
             console.error(err.response?.data || err);
-            alert(err.response?.data?.message || "Submission failed");
+            toast.error(err.response?.data?.message || "Submission failed");
         } finally {
             setLoading(false);
         }
@@ -128,9 +129,11 @@ const ContactForm = () => {
                                 className="form-control"
                                 placeholder="Your Name"
                                 name="name"
+                                value={form.name}
                                 required
                                 onChange={handleChange}
                             />
+
                         </div>
 
                         <div className="col-md-6">
@@ -140,9 +143,11 @@ const ContactForm = () => {
                                 className="form-control"
                                 placeholder="email@example.com"
                                 name="email"
+                                value={form.email}
                                 required
                                 onChange={handleChange}
                             />
+
                         </div>
 
                         <div className="col-md-6">
@@ -151,9 +156,11 @@ const ContactForm = () => {
                                 className="form-control"
                                 placeholder="Your Company"
                                 name="company"
+                                value={form.company}
                                 required
                                 onChange={handleChange}
                             />
+
                         </div>
 
                         <div className="col-md-6">
@@ -162,9 +169,11 @@ const ContactForm = () => {
                                 className="form-control"
                                 placeholder="9876543210"
                                 name="mobile"
+                                value={form.mobile}
                                 required
                                 onChange={handleChange}
                             />
+
                         </div>
 
                         <div className="col-md-6">
@@ -173,9 +182,11 @@ const ContactForm = () => {
                                 className="form-control"
                                 placeholder="Your Budget"
                                 name="budget"
+                                value={form.budget}
                                 required
                                 onChange={handleChange}
                             />
+
                         </div>
 
                         <div className="col-md-6">
@@ -202,9 +213,11 @@ const ContactForm = () => {
                                 className="form-control"
                                 placeholder="Share more about your concept"
                                 name="project_brief"
+                                value={form.project_brief}
                                 required
                                 onChange={handleChange}
                             />
+
                         </div>
 
                         <div className="col-md-6">
@@ -231,6 +244,7 @@ const ContactForm = () => {
                                 className="form-control"
                                 placeholder="Enter sum"
                                 name="answer"
+                                value={form.answer}
                                 required
                                 onChange={handleChange}
                             />

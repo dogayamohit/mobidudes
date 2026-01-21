@@ -12,6 +12,7 @@ let Careers = () => {
     const [expMonths, setExpMonths] = useState("");
     const [currentSalary, setCurrentSalary] = useState("");
     const [expectedSalary, setExpectedSalary] = useState("");
+        const [selectedVacancyId, setSelectedVacancyId] = useState("");
 
     return (
         <>
@@ -57,9 +58,9 @@ let Careers = () => {
                             <a href="#" className="portfolio-card">
                                 <div className="portfolio-image">
                                     <img src="https://cloudwapp.com/public/assets/img/why_project1.jpg" alt="whyworkimg1" />
-                                    <div className="portfolio-overlay">
+                                    {/* <div className="portfolio-overlay">
                                         <span className="portfolio-icon"><i className="bi bi-arrow-up-right"></i></span>
-                                    </div>
+                                    </div> */}
                                 </div>
                                 <div className="portfolio-content">
                                     {/* <span class="portfolio-category">Automation</span> */}
@@ -73,9 +74,9 @@ let Careers = () => {
                             <a href="#" className="portfolio-card">
                                 <div className="portfolio-image">
                                     <img src="https://cloudwapp.com/public/assets/img/why_project2.jpg" alt="whyworkimg2" />
-                                    <div className="portfolio-overlay">
+                                    {/* <div className="portfolio-overlay">
                                         <span className="portfolio-icon"><i className="bi bi-arrow-up-right"></i></span>
-                                    </div>
+                                    </div> */}
                                 </div>
                                 <div className="portfolio-content">
                                     {/* <span class="portfolio-category">Automation</span> */}
@@ -88,9 +89,9 @@ let Careers = () => {
                             <a href="#" className="portfolio-card">
                                 <div className="portfolio-image">
                                     <img src="https://cloudwapp.com/public/assets/img/why_project3.jpg" alt="whyworkimg3" />
-                                    <div className="portfolio-overlay">
+                                    {/* <div className="portfolio-overlay">
                                         <span className="portfolio-icon"><i className="bi bi-arrow-up-right"></i></span>
-                                    </div>
+                                    </div> */}
                                 </div>
                                 <div className="portfolio-content">
                                     {/* <span class="portfolio-category">Automation</span> */}
@@ -103,9 +104,9 @@ let Careers = () => {
                             <a href="#" className="portfolio-card">
                                 <div className="portfolio-image">
                                     <img src="https://cloudwapp.com/public/assets/img/why_project4.jpg" alt="whyworkimg4" />
-                                    <div className="portfolio-overlay">
+                                    {/* <div className="portfolio-overlay">
                                         <span className="portfolio-icon"><i className="bi bi-arrow-up-right"></i></span>
-                                    </div>
+                                    </div> */}
                                 </div>
                                 <div className="portfolio-content">
                                     {/* <span class="portfolio-category">Automation</span> */}
@@ -118,9 +119,9 @@ let Careers = () => {
                             <a href="#" className="portfolio-card">
                                 <div className="portfolio-image">
                                     <img src="https://cloudwapp.com/public/assets/img/why_project5.jpg" alt="whyworkimg5" />
-                                    <div className="portfolio-overlay">
+                                    {/* <div className="portfolio-overlay">
                                         <span className="portfolio-icon"><i className="bi bi-arrow-up-right"></i></span>
-                                    </div>
+                                    </div> */}
                                 </div>
                                 <div className="portfolio-content">
                                     {/* <span class="portfolio-category">Automation</span> */}
@@ -133,6 +134,8 @@ let Careers = () => {
                     </div>
                 </div>
             </section>
+
+
             {/* our value  section start */}
             <section className="team-section">
                 <div className="container">
@@ -195,6 +198,7 @@ let Careers = () => {
                 </div>
             </section>
 
+
             {/* job */}
             {/* <section className="service-details-section">
                 <div className="container">
@@ -247,7 +251,11 @@ let Careers = () => {
                     </div>
                 </div>
             </section> */}
-            <CareersTimeline />
+
+
+            {/* <CareersTimeline /> */}
+            <CareersTimeline onApply={setSelectedVacancyId} />
+
 
             {/* //  < !--Contact Section-- > */}
             <section className="contact-section" id="career-form">
@@ -274,149 +282,10 @@ let Careers = () => {
                             </div>
                         </div>
 
-                        {/* <!-- Contact Form --> */}
-                        {/* <div class="col-lg-7" data-aos="fade-left">
-                            <div class="contact-form-wrapper">
-                                <h3 class="form-title">(Note- This is only Career Related Form)</h3>
-                                <form class="contact-form">
-                                    <div class="row g-4">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="firstName">Your Name</label>
-                                                <input type="text" class="form-control" id="Name" placeholder="Your Name" required />
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="email">Your Email</label>
-                                                <input type="email" class="form-control" id="email" placeholder="email@example.com" required />
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="phone">Phone Number</label>
-                                                <input type="tel" class="form-control" id="phone" placeholder="+1 234 567 890" />
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 col-12">
-                                            <div class="form-group">
-                                                <label for="subject">Are you Fresher or Experienced?</label>
-                                                <select
-                                                    className="form-control"
-                                                    value={experience}
-                                                    onChange={(e) => setExperience(e.target.value)}
-                                                >
-                                                    <option value="" disabled hidden>
-                                                        Select
-                                                    </option>
-                                                    <option value="Fresher">Fresher</option>
-                                                    <option value="Experienced">Experienced</option>
-                                                </select>
+                        {/* <!-- Career Form --> */}                        
+                        {/* <CareerForm /> */}
+                        <CareerForm selectedVacancyId={selectedVacancyId} />
 
-                                            </div>
-                                        </div>
-                                        {experience === "Experienced" && (
-                                            <>
-                                                <div className="col-md-6 col-12">
-                                                    <div className="form-group">
-                                                        <label>Total Experience (Years)</label>
-                                                        <input
-                                                            type="number"
-                                                            className="form-control"
-                                                            placeholder="Years"
-                                                            value={expYears}
-                                                            onChange={(e) => setExpYears(e.target.value)}
-                                                        />
-                                                    </div>
-                                                </div>
-
-                                                <div className="col-md-6 col-12">
-                                                    <div className="form-group">
-                                                        <label>Total Experience (Months)</label>
-                                                        <input
-                                                            type="number"
-                                                            className="form-control"
-                                                            placeholder="Months"
-                                                            value={expMonths}
-                                                            onChange={(e) => setExpMonths(e.target.value)}
-                                                        />
-                                                    </div>
-                                                </div>
-
-                                                <div className="col-md-6 col-12">
-                                                    <div className="form-group">
-                                                        <label>Current Salary</label>
-                                                        <input
-                                                            type="number"
-                                                            className="form-control"
-                                                            placeholder="Current Salary"
-                                                            value={currentSalary}
-                                                            onChange={(e) => setCurrentSalary(e.target.value)}
-                                                        />
-                                                    </div>
-                                                </div>
-
-                                                <div className="col-md-6 col-12">
-                                                    <div className="form-group">
-                                                        <label>Expected Salary</label>
-                                                        <input
-                                                            type="number"
-                                                            className="form-control"
-                                                            placeholder="Expected Salary"
-                                                            value={expectedSalary}
-                                                            onChange={(e) => setExpectedSalary(e.target.value)}
-                                                        />
-                                                    </div>
-                                                </div>
-                                            </>
-                                        )}
-
-                                        <div class="col-md-6 col-12">
-                                            <div class="form-group">
-                                                <label for="subject">Your Role</label>
-                                                <select class="form-control" id="suervices">
-                                                    <option selected="" disabled="" value="">Select</option>
-                                                    <option value="Website Development">
-                                                        Frontend Devloper
-                                                    </option>
-                                                    <option value="App Development">
-                                                        Backend devloper
-                                                    </option>
-
-                                                </select>
-
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="lastName">Available to join (in days)</label>
-                                                <input type="text" class="form-control" id="lastName" placeholder="0 Days" required />
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="lastName">Select File</label>
-                                                <input type="file" class="form-control" id="lastName" placeholder="Choose file | No file chosen" required />
-                                            </div>
-                                        </div>
-
-
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="lastName">Solve: 9 + 2 = ?</label>
-                                                <input type="number" class="form-control" id="lastName" placeholder="Enter sum" required />
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <button type="submit" class="btn btn-cta-primary btn-lg w-100">Send Message</button>
-                                        </div>
-
-                                    </div>
-                                </form>
-                            </div>
-                        </div> */}
-
-                        <CareerForm />
 
 
                     </div>

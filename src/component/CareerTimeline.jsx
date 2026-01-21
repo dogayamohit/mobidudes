@@ -22,7 +22,8 @@ const STATIC_VACANCIES = [
   },
 ];
 
-const CareersTimeline = () => {
+const CareersTimeline = ({ onApply }) => {
+
   const [vacancies, setVacancies] = useState(STATIC_VACANCIES);
 
   useEffect(() => {
@@ -63,9 +64,18 @@ const CareersTimeline = () => {
                     <p>Ex. {job.experience}</p>
                   </div>
 
-                  <div className="timelinebutton">
+                  {/* <div className="timelinebutton">
                     <a href="#career-form">Apply</a>
+                  </div> */}
+                  <div className="timelinebutton">
+                    <a
+                      href="#career-form"
+                      onClick={() => onApply(job.id)}
+                    >
+                      Apply
+                    </a>
                   </div>
+
                 </div>
               ))}
             </div>

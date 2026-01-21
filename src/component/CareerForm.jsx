@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import { getVacancies, submitCareerForm } from "../api/career";
 
-const CareerForm = () => {
+const CareerForm = ({ selectedVacancyId }) => {
+
     const [vacancies, setVacancies] = useState([]);
     const [resumeName, setResumeName] = useState("");
     const [experience, setExperience] = useState(""); // fresher | experienced
     const [roleId, setRoleId] = useState("");
     const [captcha, setCaptcha] = useState({ a: 0, b: 0 });
+
 
     const [form, setForm] = useState({
         name: "",
@@ -34,13 +36,26 @@ const CareerForm = () => {
 
 
     /* ---------- FETCH VACANCIES ---------- */
+    // useEffect(() => {
+    //     getVacancies()
+    //         .then((data) => {
+    //             setVacancies(data.filter((v) => v.is_active));
+    //         })
+    //         .catch(() => console.error("Failed to load roles"));
+    // }, []);
     useEffect(() => {
-        getVacancies()
-            .then((data) => {
-                setVacancies(data.filter((v) => v.is_active));
-            })
-            .catch(() => console.error("Failed to load roles"));
-    }, []);
+    getVacancies()
+        .then((data) => {
+            const active = data.filter((v) => v.is_active);
+            setVacancies(active);
+
+            if (selectedVacancyId) {
+                setRoleId(String(selectedVacancyId));
+            }
+        })
+        .catch(() => console.error("Failed to load roles"));
+}, [selectedVacancyId]);
+
 
     /* ---------- INPUT HANDLERS ---------- */
     const handleChange = (e) => {
@@ -236,7 +251,7 @@ const CareerForm = () => {
                         {/* Role */}
                         <div className="col-md-6">
                             <label>Your Role</label>
-                            <select
+                            {/* <select
                                 className="form-control"
                                 value={roleId}
                                 onChange={(e) => setRoleId(e.target.value)}
@@ -248,7 +263,21 @@ const CareerForm = () => {
                                         {v.job_name}
                                     </option>
                                 ))}
-                            </select>
+                            </select> */}
+                            <select
+    className="form-control"
+    value={roleId}
+    onChange={(e) => setRoleId(e.target.value)}
+    required
+>
+    <option value="" disabled>Select</option>
+    {vacancies.map((v) => (
+        <option key={v.id} value={v.id}>
+            {v.job_name}
+        </option>
+    ))}
+</select>
+
                         </div>
 
                         {/* Joining */}

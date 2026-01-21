@@ -1,61 +1,41 @@
-import { useEffect } from "react"
-import casestudy1 from "../assets/img/case-study-1.jpg"
-import casestudy2 from "../assets/img/case-study-2.jpg"
-import casestudy3 from "../assets/img/case-study-3.jpg"
-import casestudy4 from "../assets/img/case-study-4.jpg"
-import { useNavigate } from "react-router-dom"
-import PageHeader from "../layout/PageHeader"
-let Blogpage = () => {
-    let Navigate = useNavigate()
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import PageHeader from "../layout/PageHeader";
+import { getBlogCategories, getBlogs } from "../api/blog";
+
+const Blogpage = () => {
+    const navigate = useNavigate();
+
+    const [categories, setCategories] = useState([]);
+    const [blogs, setBlogs] = useState([]);
+    const [activeCategory, setActiveCategory] = useState("all");
+
     useEffect(() => {
-        const filterBtns = document.querySelectorAll('.filter-btn');
-        const portfolioItems = document.querySelectorAll('.portfolio-item');
-        const noResultDiv = document.getElementById("no-results");
-
-        filterBtns.forEach((btn) => {
-            btn.addEventListener("click", function () {
-                // Remove active class
-                filterBtns.forEach(b => b.classList.remove("active"));
-                this.classList.add("active");
-
-                const filter = this.getAttribute("data-filter");
-
-                let visibleCount = 0;
-
-                portfolioItems.forEach((item) => {
-                    const match = filter === "all" || item.getAttribute("data-category") === filter;
-
-                    if (match) {
-                        item.style.display = "block";
-                        setTimeout(() => {
-                            item.style.opacity = "1";
-                            item.style.transform = "translateY(0)";
-                        }, 50);
-                        visibleCount++;
-                    } else {
-                        item.style.opacity = "0";
-                        item.style.transform = "translateY(20px)";
-                        setTimeout(() => {
-                            item.style.display = "none";
-                        }, 300);
-                    }
-                });
-
-                // Show / Hide No Results
-                setTimeout(() => {
-                    if (visibleCount === 0) {
-                        noResultDiv.style.display = "block";
-                    } else {
-                        noResultDiv.style.display = "none";
-                    }
-                }, 350);
-            });
-        });
+        fetchData();
     }, []);
+
+    const fetchData = async () => {
+        const catData = await getBlogCategories();
+        const blogData = await getBlogs();
+
+        setCategories(catData);
+        setBlogs(blogData);
+    };
+
+    const filteredBlogs =
+        activeCategory === "all"
+            ? blogs
+            : blogs.filter((b) => b.category_id === activeCategory);
+
+    const stripHtml = (html) => {
+        const div = document.createElement("div");
+        div.innerHTML = html;
+        return div.textContent || div.innerText || "";
+    };
+
 
     return (
         <>
-
             <PageHeader title="Our Blog" currentPage="Blog" />
             <section className="careers-intro-section">
                 <div className="container">
@@ -96,81 +76,94 @@ let Blogpage = () => {
                 </div>
             </section>
 
-            {/* // < !--Portfolio Filter-- > */}
+
+            {/* FILTER SECTION */}
             <section className="portfolio-section">
                 <div className="container">
+
                     {/* Filter Buttons */}
                     <div className="row mb-5">
-                        <div className="col-12 text-center" data-aos="fade-up">
+                        <div className="col-12 text-center">
                             <div className="portfolio-filters">
-                                <button className="filter-btn active" data-filter="all">All Blogs</button>
-                                <button className="filter-btn" data-filter="ai">AI Solutions</button>
-                                <button className="filter-btn" data-filter="automation">Automation</button>
-                                <button className="filter-btn" data-filter="analytics">Analytics</button>
-                                <button className="filter-btn" data-filter="security">Security</button>
+                                <button
+                                    className={`filter-btn ${activeCategory === "all" ? "active" : ""}`}
+                                    onClick={() => setActiveCategory("all")}
+                                >
+                                    All Blogs
+                                </button>
+
+                                {categories.map((cat) => (
+                                    <button
+                                        key={cat.id}
+                                        className={`filter-btn ${activeCategory === cat.id ? "active" : ""}`}
+                                        onClick={() => setActiveCategory(cat.id)}
+                                    >
+                                        {cat.name}
+                                    </button>
+                                ))}
                             </div>
                         </div>
                     </div>
 
-                    {/* Portfolio Grid */}
+                    {/* BLOG GRID */}
                     <div className="row g-4 portfolio-grid">
-
-                        {/* Project 1 */}
-                        <div
-                            className="col-lg-4 col-md-6 portfolio-item"
-                            data-category="ai"
-                            data-aos="fade-up"
-                            data-aos-delay="100"
-                        >
-                            <a className="portfolio-card" onClick={() => Navigate("/blogdetailpage")}>
-                                <div className="portfolio-image">
-                                    <img
-                                        src="https://cloudwapp.com/public/uploads/blog/1755153709_representation-user-experience-interface-design-min.jpg"
-                                        alt="blogimg"
-                                    />
-                                    <div className="portfolio-overlay">
-                                        <span className="portfolio-icon">
-                                            <i className="bi bi-arrow-up-right"></i>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div className="portfolio-content">
-                                    <div className="d-flex justify-content-between">
-                                        <span className="portfolio-category">14 Aug 25</span>
-                                        <span className="portfolio-category">Growth</span>
-
-                                    </div>
+                        {filteredBlogs.length > 0 ? (
+                            filteredBlogs.map((blog) => (
+                                <div key={blog.id} className="col-lg-4 col-md-6 portfolio-item">
+                                    <div
+                                        className="portfolio-card"
+                                        onClick={() => navigate(`/blogdetailpage/${blog.id}`)}
+                                    >
+                                        <div className="portfolio-image">
+                                            <img
+                                                src={`${import.meta.env.VITE_API_BASE_URL_FOR_IMAGES}/${blog.image?.split(",")[0]?.trim() || "assets/default-blog.jpg"
+                                                    }`}
+                                                alt={blog.title}
+                                            />
 
 
-                                    <h3 className="portfolio-title"> Why Mobile Apps Are Necessary for Business Growth in Today’s Digital Era </h3>
-                                    <p className="portfolio-desc text-line-clamp-2">
-                                        In today’s fast-paced digital world, businesses are constantly seeking innovative ways to connect with customers, streamline operations, and stay ahead of the competition. One of the most effective tools for achieving these goals is a mobile app . With billions of smartphone users worldwide, mobile applications have become more than just a trend — they are now a necessity for businesses of all sizes.
-                                    </p>
+                                            <div className="portfolio-overlay">
+                                                <span className="portfolio-icon">
+                                                    <i className="bi bi-arrow-up-right"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                        <div className="portfolio-content">
+                                            <div className="d-flex justify-content-between">
+                                                <span className="portfolio-category">
+                                                    {new Date(blog.createdAt).toDateString()}
+                                                </span>
+                                                <span className="portfolio-category">
+                                                    {blog.category?.name}
+                                                </span>
+                                            </div>
+
+                                            <h3 className="portfolio-title">{blog.title}</h3>
+
+                                            <p className="portfolio-desc text-line-clamp-2">
+                                                {stripHtml(blog.description)}
+                                            </p>
 
 
-                                    {/* Load More */}
-                                    <div className="row ">
-                                        <div className="col-12 " data-aos="fade-up">
-                                            <button className="btn btn-load-more" onClick={() => Navigate("/blogdetailpage")}>
+                                            <button className="btn btn-load-more">
                                                 Read More
                                             </button>
                                         </div>
                                     </div>
-
                                 </div>
-                            </a>
-                        </div>
+                            ))
+                        ) : (
+                            <div id="no-results" className="noblogresults">
+                                <h3>No Blog Found</h3>
+                                <p>Please check back later for new updates.</p>
+                            </div>
+                        )}
                     </div>
-
-                    <div id="no-results" className="noblogresults">
-                        <h3>No Blog Found</h3>
-                        <p>Please check back later for new updates.</p>
-                    </div>
-
                 </div>
             </section>
-
         </>
-    )
-}
+    );
+};
+
 export default Blogpage;
