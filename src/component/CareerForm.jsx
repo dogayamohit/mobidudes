@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getVacancies, submitCareerForm } from "../api/career";
+import { toast } from "react-toastify";
 
 const CareerForm = ({ selectedVacancyId }) => {
 
@@ -44,17 +45,17 @@ const CareerForm = ({ selectedVacancyId }) => {
     //         .catch(() => console.error("Failed to load roles"));
     // }, []);
     useEffect(() => {
-    getVacancies()
-        .then((data) => {
-            const active = data.filter((v) => v.is_active);
-            setVacancies(active);
+        getVacancies()
+            .then((data) => {
+                const active = data.filter((v) => v.is_active);
+                setVacancies(active);
 
-            if (selectedVacancyId) {
-                setRoleId(String(selectedVacancyId));
-            }
-        })
-        .catch(() => console.error("Failed to load roles"));
-}, [selectedVacancyId]);
+                if (selectedVacancyId) {
+                    setRoleId(String(selectedVacancyId));
+                }
+            })
+            .catch(() => console.error("Failed to load roles"));
+    }, [selectedVacancyId]);
 
 
     /* ---------- INPUT HANDLERS ---------- */
@@ -78,18 +79,18 @@ const CareerForm = ({ selectedVacancyId }) => {
         const correctAnswer = captcha.a + captcha.b;
 
         if (Number(form.answer) !== correctAnswer) {
-            alert("Wrong captcha answer");
+            toast.error("Wrong captcha answer");
             generateCaptcha();        // regenerate on failure
             return;
         }
 
         if (!form.resume) {
-            alert("Please upload resume");
+            toast.error("Please upload resume");
             return;
         }
 
         if (!roleId || !experience) {
-            alert("Please select role and experience");
+            toast.error("Please select role and experience");
             return;
         }
 
@@ -112,8 +113,8 @@ const CareerForm = ({ selectedVacancyId }) => {
 
         try {
             await submitCareerForm(formData);
-            alert("Application submitted successfully");
-            
+            toast.success("Application submitted successfully");
+
             // Reset form
             setForm({
                 name: "",
@@ -153,6 +154,7 @@ const CareerForm = ({ selectedVacancyId }) => {
                                 type="text"
                                 className="form-control"
                                 placeholder="Your Name"
+                                value={form.name}
                                 name="name"
                                 required
                                 onChange={handleChange}
@@ -166,6 +168,7 @@ const CareerForm = ({ selectedVacancyId }) => {
                                 type="email"
                                 className="form-control"
                                 placeholder="email@example.com"
+                                value={form.email}
                                 name="email"
                                 required
                                 onChange={handleChange}
@@ -177,7 +180,8 @@ const CareerForm = ({ selectedVacancyId }) => {
                             <label>Phone</label>
                             <input
                                 className="form-control"
-                                placeholder="+1 234 567 890"
+                                placeholder="+91 9876543210"
+                                value={form.phone}
                                 name="phone"
                                 required
                                 onChange={handleChange}
@@ -208,6 +212,7 @@ const CareerForm = ({ selectedVacancyId }) => {
                                         type="number"
                                         className="form-control"
                                         placeholder="Years"
+                                        value={form.expYears}
                                         name="expYears"
                                         onChange={handleChange}
                                     />
@@ -219,6 +224,7 @@ const CareerForm = ({ selectedVacancyId }) => {
                                         type="number"
                                         className="form-control"
                                         placeholder="Months"
+                                        value={form.expMonths}
                                         name="expMonths"
                                         onChange={handleChange}
                                     />
@@ -230,6 +236,7 @@ const CareerForm = ({ selectedVacancyId }) => {
                                         type="number"
                                         className="form-control"
                                         placeholder="Current Salary"
+                                        value={form.currentSalary}
                                         name="currentSalary"
                                         onChange={handleChange}
                                     />
@@ -241,6 +248,7 @@ const CareerForm = ({ selectedVacancyId }) => {
                                         type="number"
                                         className="form-control"
                                         placeholder="Expected Salary"
+                                        value={form.expectedSalary}
                                         name="expectedSalary"
                                         onChange={handleChange}
                                     />
@@ -265,18 +273,18 @@ const CareerForm = ({ selectedVacancyId }) => {
                                 ))}
                             </select> */}
                             <select
-    className="form-control"
-    value={roleId}
-    onChange={(e) => setRoleId(e.target.value)}
-    required
->
-    <option value="" disabled>Select</option>
-    {vacancies.map((v) => (
-        <option key={v.id} value={v.id}>
-            {v.job_name}
-        </option>
-    ))}
-</select>
+                                className="form-control"
+                                value={roleId}
+                                onChange={(e) => setRoleId(e.target.value)}
+                                required
+                            >
+                                <option value="" disabled>Select</option>
+                                {vacancies.map((v) => (
+                                    <option key={v.id} value={v.id}>
+                                        {v.job_name}
+                                    </option>
+                                ))}
+                            </select>
 
                         </div>
 
@@ -285,7 +293,8 @@ const CareerForm = ({ selectedVacancyId }) => {
                             <label>Available to join (days)</label>
                             <input
                                 className="form-control"
-                                placeholder="0 Days"
+                                placeholder="5 Days"
+                                value={form.joiningDays}
                                 name="joiningDays"
                                 required
                                 onChange={handleChange}
@@ -318,6 +327,7 @@ const CareerForm = ({ selectedVacancyId }) => {
                                 className="form-control"
                                 placeholder="Enter sum"
                                 name="answer"
+                                value={form.answer}
                                 required
                                 onChange={handleChange}
                             />
