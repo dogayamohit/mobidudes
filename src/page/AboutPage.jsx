@@ -1,8 +1,31 @@
 import WorkGallery from "../component/workgallery.jsx";
+import { useEffect, useState } from "react";
+import { getAboutVideoById } from "../api/about";
 import { useNavigate } from "react-router-dom";
 import PageHeader from "../layout/PageHeader.jsx";
 let Aboutpage = () => {
-    let Navigate = useNavigate()
+    let Navigate = useNavigate();
+
+    const [videoUrl, setVideoUrl] = useState("");
+
+
+    useEffect(() => {
+        const fetchVideo = async () => {
+            try {
+                const data = await getAboutVideoById();
+                // assuming API returns { video: "url" }
+                setVideoUrl(data.video);
+            } catch (error) {
+                console.error("Failed to load about video", error);
+            }
+        };
+
+        fetchVideo();
+    }, []);
+
+    const DEFAULT_VIDEO =
+        "https://cloudwapp.com/public/uploads/about/video/1755697237_Cloudwapp%20promotional%20video%20(1).mp4";
+
     return (
         <>
             {/* <!-- ========== PAGE HEADER ========== --> */}
@@ -63,12 +86,24 @@ let Aboutpage = () => {
             <section className="mission-section">
                 <div className="container">
                     <div className="row g-4">
-                        <div className="col-lg-12" data-aos="fade-up" data-aos-delay="100">
-                            <div className="mission-card ">
-                                <video src="https://cloudwapp.com/public/uploads/about/video/1755697237_Cloudwapp%20promotional%20video%20(1).mp4" controls className="h-auto w-100"></video>
+                        <div
+                            className="col-lg-12"
+                            data-aos="fade-up"
+                            data-aos-delay="100"
+                        >
+                            <div className="mission-card">
+                                <video
+                                    src={
+                                        videoUrl
+                                            ? `${import.meta.env.VITE_API_BASE_URL_FOR_IMAGES}/${videoUrl}`
+                                            : DEFAULT_VIDEO
+                                    }
+                                    controls
+                                    className="h-auto w-100"
+                                />
                             </div>
-                        </div>
 
+                        </div>
                     </div>
                 </div>
             </section>

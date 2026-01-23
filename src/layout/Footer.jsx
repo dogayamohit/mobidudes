@@ -14,8 +14,14 @@ let Footer = () => {
                     <div className="row">
                         {/* <!-- Newsletter --> */}
 
-                        <div className="col-lg-6 mb-5 mb-lg-0 footer-top">
-                            <div className="footer-newsletter" data-aos="fade-right">
+                        <div className="col-lg-3 mb-5 mb-lg-0 footer-top ">
+                            <div className="">
+                                <a className="footer-logo" onClick={() => Navigate("/")}>
+                                    {/* <img src={isLight ? lighttheemlogo : darktheemlogo} alt="aiNexa" className="footer-logo-img" /> */}
+                                    <img src={darktheemlogo} alt="Mobidudes" className="footer-logo-img" />
+                                </a>
+                            </div>
+                            {/* <div className="footer-newsletter" data-aos="fade-right">
                                 <h5 className="footer-title">Subscribe to our newsletter to stay in touch with the latest</h5>
                                 <form className="newsletter-form">
                                     <div className="input-group">
@@ -23,14 +29,14 @@ let Footer = () => {
                                         <button type="submit" className="btn btn-newsletter">Send</button>
                                     </div>
                                 </form>
-                            </div>
+                            </div> */}
                         </div>
 
                         {/* <!-- Footer Links & Contact --> */}
-                        <div className="col-lg-6 footer-top">
+                        <div className="col-lg-9 footer-top">
                             <div className="row">
                                 {/* <!-- Services Links --> */}
-                                <div className="col-md-4 mb-4 mb-md-0" data-aos="fade-up" data-aos-delay="100">
+                                <div className="col-md-3 mb-4 mb-md-0" data-aos="fade-up" data-aos-delay="100">
                                     <h6 className="footer-heading">Our Services</h6>
                                     <ul className="footer-links">
                                         <li><a onClick={() => Navigate("/services")}>Services</a></li>
@@ -42,7 +48,7 @@ let Footer = () => {
                                 </div>
 
                                 {/* <!-- Contact Info --> */}
-                                <div className="col-md-8" data-aos="fade-up" data-aos-delay="200">
+                                <div className="col-md-4" data-aos="fade-up" data-aos-delay="200">
                                     <h6 className="footer-heading">Our Contacts</h6>
                                     <ul className="footer-contact">
                                         <li>
@@ -60,6 +66,28 @@ let Footer = () => {
                                         </li>
                                     </ul>
                                 </div>
+
+                                <div className="col-md-3 mb-4 mb-md-0" data-aos="fade-up" data-aos-delay="100">
+                                    <h6 className="footer-heading">Social Links</h6>
+                                    <div className="">
+                                        <ul className="social-links">
+                                            <li><a href="https://www.linkedin.com/company/cloudwapp" aria-label="LinkedIn" target="_blank">
+                                                <i className="bi bi-linkedin"></i></a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.instagram.com/cloudwapp/" aria-label="Instagram" target="_blank">
+                                                    <i className="bi bi-instagram"></i></a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.facebook.com/Cloudwapp/" target="_blank" aria-label="Facebook">
+                                                    <i className="bi bi-facebook"></i>
+                                                </a></li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+
+
                             </div>
                         </div>
                     </div>
@@ -67,16 +95,16 @@ let Footer = () => {
                     {/* <!-- Footer Bottom --> */}
                     <div className="footer-bottom">
                         <div className="row align-items-center">
-                            <div className="col-lg-4 mb-4 mb-lg-0">
+                            {/* <div className="col-lg-4 mb-4 mb-lg-0">
                                 <a className="footer-logo" onClick={() => Navigate("/")}>
-                                    {/* <img src={isLight ? lighttheemlogo : darktheemlogo} alt="aiNexa" className="footer-logo-img" /> */}
+                                    <img src={isLight ? lighttheemlogo : darktheemlogo} alt="aiNexa" className="footer-logo-img" />
                                     <img src={darktheemlogo} alt="Mobidudes" className="footer-logo-img" />
                                 </a>
-                            </div>
-                            <div className="col-lg-4 mb-4 mb-lg-0 text-center">
+                            </div> */}
+                            <div className="col-lg-12 mb-4 mb-lg-0 text-center">
                                 <p className="copyright">©  2026 – All Rights Reserved</p>
                             </div>
-                            <div className="col-lg-4">
+                            {/* <div className="col-lg-4">
                                 <ul className="social-links">
                                     <li><a href="https://www.linkedin.com/company/cloudwapp" aria-label="LinkedIn" target="_blank">
                                         <i className="bi bi-linkedin"></i></a>
@@ -89,9 +117,8 @@ let Footer = () => {
                                         <a href="https://www.facebook.com/Cloudwapp/" target="_blank" aria-label="Facebook">
                                             <i className="bi bi-facebook"></i>
                                         </a></li>
-
                                 </ul>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 </div>

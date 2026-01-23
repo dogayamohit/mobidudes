@@ -26,6 +26,7 @@ import PortfolioPage from "./page/Portfolio";
 import ScrollToTop from "./hook/scrooltop";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import PortfolioDetailPage from "./component/Portfolio/PortfolioDetailPage";
 
 
 function App() {
@@ -69,6 +70,8 @@ function App() {
           <Route path="/servicesdetailpage/:id" element={<ServiceDetailPage />} />
           <Route path="/blogdetailpage/:id" element={<BlogDetailPage />} />
           <Route path="/portfolio" element={<PortfolioPage />} />
+          <Route path="/portfolio-detail-page/:id" element={<PortfolioDetailPage />} />
+
         </Route>
       </Routes>
 

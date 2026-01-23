@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import PageHeader from "../layout/PageHeader";
 import { getPortfolio, getPortfolioCategories } from "../api/portfolio";
+import { useNavigate } from "react-router-dom";
 
-const IMAGE_BASE_URL = "https://cloudwapptechnologies.com/mobidudes/api/";
+const IMAGE_BASE_URL = import.meta.env.VITE_API_BASE_URL_FOR_IMAGES;
 
 const PortfolioPage = () => {
+    const navigate = useNavigate();
     const [categories, setCategories] = useState([]);
     const [portfolios, setPortfolios] = useState([]);
     const [activeFilter, setActiveFilter] = useState("all");
@@ -94,8 +96,8 @@ const PortfolioPage = () => {
                                     <button
                                         key={cat.id}
                                         className={`filter-btn ${activeFilter === cat.id
-                                                ? "active"
-                                                : ""
+                                            ? "active"
+                                            : ""
                                             }`}
                                         onClick={() => setActiveFilter(cat.id)}
                                     >
@@ -128,11 +130,11 @@ const PortfolioPage = () => {
                                     <div className="portfolio-card">
                                         <div className="portfolio-image">
                                             <img
-                                                src={`${IMAGE_BASE_URL}${item.image}`}
+                                                src={`${IMAGE_BASE_URL}/${item.image.split(",")[0]}`}
                                                 alt={item.title}
                                             />
                                             <div className="portfolio-overlay">
-                                                {getPortfolioLinks(item).map((link, index) => (
+                                                {/* {getPortfolioLinks(item).map((link, index) => (
                                                     <a
                                                         key={index}
                                                         href={link.url}
@@ -143,7 +145,7 @@ const PortfolioPage = () => {
                                                     >
                                                         <i className={link.icon}></i>
                                                     </a>
-                                                ))}
+                                                ))} */}
                                             </div>
 
                                         </div>
@@ -152,9 +154,25 @@ const PortfolioPage = () => {
                                             <span className="portfolio-category">
                                                 {item.portfolio_category?.name}
                                             </span>
-                                            <h3 className="portfolio-title">
+                                            <h3 className="portfolio-title text-line-clamp">
                                                 {item.title}
                                             </h3>
+                                            <p className="portfolio-desc text-line-clamp-2">
+                                                {item.description}
+                                            </p>
+
+                                            {/* LINK */}
+                                            <div className="portfolio-read-btn">
+                                                <a
+                                                    className="portfolio-page-link"
+                                                    onClick={() =>
+                                                        navigate(`/portfolio-detail-page/${item.id}`)
+                                                    }
+                                                >
+                                                    Learn More
+                                                    <i className="bi bi-arrow-right"></i>
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

@@ -16,3 +16,4 @@ export const getPortfolioCategories = async () => {
   const res = await api.get("/website/portfolio-category/get");
   return res.data.data;
 };
+
