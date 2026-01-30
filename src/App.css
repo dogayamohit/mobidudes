@@ -1671,10 +1671,14 @@ button.icon-toggle {
 
   .service-detail-image {
 
-    min-height: auto !important;
+    height: 350px !important;
 
     border-radius: var(--radius-lg) !important;
 
+  }
+
+  .service-detail-image-portfolio {
+    border-radius: var(--radius-lg) !important;
   }
 
   .service-sidebar .service-list {
@@ -3501,7 +3505,8 @@ button.icon-toggle {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 300px;
+  /* min-height: 300px; */
+  height: 550px;
   margin-bottom: 40px;
 
   border-radius: var(--radius-xl);
@@ -3509,10 +3514,28 @@ button.icon-toggle {
 }
 
 .service-detail-image img {
-  height: auto;
+  height: 100%;
   width: 100%;
-  object-fit: contain;
+  object-fit: cover;
   object-position: center;
+}
+
+.service-detail-image-portfolio {
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  min-height: 300px;
+  margin-bottom: 40px;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+}
+
+.service-detail-image-portfolio img {
+  height: 450px;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+
 }
 
 .sphere-3d-medium {
@@ -4802,6 +4825,7 @@ button.icon-toggle {
 .text-line-clamp-2 {
   display: -webkit-box;
   -webkit-line-clamp: 2;
+  line-clamp: 2;
   /* jitni lines chahiye */
   -webkit-box-orient: vertical;
   overflow: hidden;
@@ -4810,6 +4834,7 @@ button.icon-toggle {
 .text-line-clamp-4 {
   display: -webkit-box;
   -webkit-line-clamp: 4;
+  line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -5017,4 +5042,42 @@ input[type="number"]::-webkit-outer-spin-button {
 [class*=" bi-"]::before {
   padding: 10px;
   vertical-align: 0em !important;
+}
+
+
+.custom-swiper-nav {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  z-index: 10;
+  transform: translateY(-50%);
+}
+
+.swiper-btn-prev,
+.swiper-btn-next {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #000;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 5px;
+}
+
+.swiper-btn-prev:hover,
+.swiper-btn-next:hover {
+  background: #04275a;
+}
+
+.swiper-btn-prev,
+.swiper-btn-next {
+  pointer-events: all;
+  z-index: 10;
 }
