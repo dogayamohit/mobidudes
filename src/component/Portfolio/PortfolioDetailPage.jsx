@@ -3,11 +3,13 @@ import { useParams, useNavigate } from "react-router-dom";
 import { getPortfolioById } from "../../api/portfolio";
 import PortfolioSidebar from "./PortfolioSidebar";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import { Navigation, Pagination, Autoplay, Thumbs } from "swiper/modules";
 
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import "swiper/css/thumbs";
+
 
 
 const PortfolioDetailPage = () => {
@@ -15,9 +17,14 @@ const PortfolioDetailPage = () => {
     const { id } = useParams();
 
     const [portfolio, setPortfolio] = useState(null);
+
+
     const prevRef = useRef(null);
     const nextRef = useRef(null);
 
+    const [thumbsSwiper, setThumbsSwiper] = useState(null);
+    const [lightboxOpen, setLightboxOpen] = useState(false);
+    const [activeIndex, setActiveIndex] = useState(0);
 
     useEffect(() => {
         fetchPortfolio();
@@ -31,6 +38,11 @@ const PortfolioDetailPage = () => {
             console.error("Portfolio fetch failed", error);
         }
     };
+
+    useEffect(() => {
+  if (!prevRef.current || !nextRef.current) return;
+}, []);
+
 
     const getPortfolioLinks = (item) => {
         const links = [];
@@ -83,6 +95,8 @@ const PortfolioDetailPage = () => {
 
 
 
+    const isSingleImage = portfolioImageList.length === 1;
+
     if (!portfolio) return <p className="text-center">Loading...</p>;
 
     return (
@@ -100,54 +114,81 @@ const PortfolioDetailPage = () => {
                                 <div className="service-detail-image-portfolio mb-4 position-relative">
 
                                     <Swiper
-                                        modules={[Navigation, Pagination, Autoplay]}
-                                        spaceBetween={20}
-                                        slidesPerView={1}
-                                        loop
-                                        autoplay={{ delay: 3000 }}
-                                        pagination={{ clickable: true }}
-                                        navigation={{
-                                            prevEl: prevRef.current,
-                                            nextEl: nextRef.current,
-                                        }}
-                                        onSwiper={(swiper) => {
-                                            // wait till refs are ready
-                                            setTimeout(() => {
-                                                if (
-                                                    swiper.params.navigation &&
-                                                    typeof swiper.params.navigation !== "boolean"
-                                                ) {
-                                                    swiper.params.navigation.prevEl = prevRef.current;
-                                                    swiper.params.navigation.nextEl = nextRef.current;
+  modules={[Navigation, Autoplay, Thumbs]}
+  spaceBetween={20}
+  slidesPerView={isSingleImage ? 1 : 2}
+  loop={!isSingleImage}
+  autoplay={!isSingleImage ? { delay: 3000 } : false}
+  thumbs={!isSingleImage ? { swiper: thumbsSwiper } : undefined}
+  navigation={{
+    prevEl: prevRef.current,
+    nextEl: nextRef.current,
+  }}
+  onInit={(swiper) => {
+    swiper.params.navigation.prevEl = prevRef.current;
+    swiper.params.navigation.nextEl = nextRef.current;
+    swiper.navigation.init();
+    swiper.navigation.update();
+  }}
+>
 
-                                                    swiper.navigation.destroy();
-                                                    swiper.navigation.init();
-                                                    swiper.navigation.update();
-                                                }
-                                            });
-                                        }}
-                                    >
                                         {portfolioImageList.map((img, index) => (
                                             <SwiperSlide key={index}>
                                                 <img
                                                     src={`${import.meta.env.VITE_API_BASE_URL_FOR_IMAGES}/${img}`}
                                                     alt={`${portfolio.title} ${index + 1}`}
-                                                    className="w-100 rounded"
+                                                    className="w-100 rounded cursor-pointer"
+                                                    onClick={() => {
+                                                        setActiveIndex(index);
+                                                        setLightboxOpen(true);
+                                                    }}
                                                 />
                                             </SwiperSlide>
                                         ))}
                                     </Swiper>
 
+
+
+
                                     {/* CUSTOM NAVIGATION */}
-                                    <div className="custom-swiper-nav">
-                                        <button ref={prevRef} className="swiper-btn-prev">
-                                            <i className="bi bi-arrow-left"></i>
-                                        </button>
-                                        <button ref={nextRef} className="swiper-btn-next">
-                                            <i className="bi bi-arrow-right"></i>
-                                        </button>
-                                    </div>
+                                    {!isSingleImage && (
+                                        <div className="custom-swiper-nav">
+                                            <button ref={prevRef} className="swiper-btn-prev">
+                                                <i className="bi bi-arrow-left"></i>
+                                            </button>
+                                            <button ref={nextRef} className="swiper-btn-next">
+                                                <i className="bi bi-arrow-right"></i>
+                                            </button>
+                                        </div>
+                                    )}
+
+
+
                                 </div>
+
+                                {!isSingleImage && (
+                                    <div className="mb-4">
+                                        <Swiper
+                                            onSwiper={setThumbsSwiper}
+                                            modules={[Thumbs]}
+                                            spaceBetween={10}
+                                            slidesPerView={8}
+                                            watchSlidesProgress
+                                            className="mt-3 portfolio-thumbs"
+                                        >
+                                            {portfolioImageList.map((img, index) => (
+                                                <SwiperSlide key={index}>
+                                                    <img
+                                                        src={`${import.meta.env.VITE_API_BASE_URL_FOR_IMAGES}/${img}`}
+                                                        alt="thumb"
+                                                        className="w-100 rounded thumb-img"
+                                                    />
+                                                </SwiperSlide>
+                                            ))}
+                                        </Swiper>
+                                    </div>
+                                )}
+
 
                                 {/* IMAGE */}
                                 {/* <div className="service-detail-image">
@@ -195,10 +236,44 @@ const PortfolioDetailPage = () => {
                         {/* RIGHT SIDEBAR (SAME PATTERN AS SERVICE) */}
                         {/* <PortfolioSidebar /> */}
 
+                        {lightboxOpen && (
+                            <div className="lightbox-overlay" onClick={() => setLightboxOpen(false)}>
+                                <div className="lightbox-content" onClick={(e) => e.stopPropagation()}>
+                                    <button
+                                        className="lightbox-close"
+                                        onClick={() => setLightboxOpen(false)}
+                                    >
+                                        ×
+                                    </button>
+
+                                    <Swiper
+                                        initialSlide={activeIndex}
+                                        modules={[Navigation]}
+                                        navigation
+                                        slidesPerView={1}
+                                    >
+                                        {portfolioImageList.map((img, index) => (
+                                            <SwiperSlide key={index}>
+                                                <img
+                                                    src={`${import.meta.env.VITE_API_BASE_URL_FOR_IMAGES}/${img}`}
+                                                    alt="lightbox"
+                                                    className="lightbox-image"
+                                                />
+                                            </SwiperSlide>
+                                        ))}
+                                    </Swiper>
+                                </div>
+                            </div>
+                        )}
+
                     </div>
                 </div>
             </section>
+
+
         </div>
+
+
     );
 };
 

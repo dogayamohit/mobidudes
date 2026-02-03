@@ -60,17 +60,17 @@ function App() {
         {/* Public routes */}
         <Route path="/" element={<Homepage />} />
         <Route path="/careers" element={<Careers />} />
-        <Route path="/aboutpage" element={<AboutPage />} />
+        <Route path="/about" element={<AboutPage />} />
         <Route path="/services" element={<ServicesPage />} />
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/contact" element={<ContactPage />} />
 
         {/* Protected routes */}
         <Route element={<ProtectedRoute />}>
-          <Route path="/servicesdetailpage/:id" element={<ServiceDetailPage />} />
-          <Route path="/blogdetailpage/:id" element={<BlogDetailPage />} />
+          <Route path="/servicesdetail/:id" element={<ServiceDetailPage />} />
+          <Route path="/blogdetail/:id" element={<BlogDetailPage />} />
           <Route path="/portfolio" element={<PortfolioPage />} />
-          <Route path="/portfolio-detail-page/:id" element={<PortfolioDetailPage />} />
+          <Route path="/portfolio-detail/:id" element={<PortfolioDetailPage />} />
 
         </Route>
       </Routes>

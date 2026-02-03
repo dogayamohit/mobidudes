@@ -127,7 +127,14 @@ const PortfolioPage = () => {
                                     key={item.id}
                                     className="col-lg-4 col-md-6 portfolio-item"
                                 >
-                                    <div className="portfolio-card">
+                                    <div
+                                        className="portfolio-card cursor-pointer"
+                                        onClick={() => {
+                                            const url = `${import.meta.env.BASE_URL}portfolio-detail/${item.id}`;
+                                            window.open(url, "_blank", "noopener,noreferrer");
+                                        }}
+                                    >
+
                                         <div className="portfolio-image">
                                             <img
                                                 src={`${IMAGE_BASE_URL}/${item.image.split(",")[0]}`}
@@ -162,16 +169,22 @@ const PortfolioPage = () => {
                                             </p>
 
                                             {/* LINK */}
-                                            <div className="portfolio-read-btn">
+                                            {/* <div className="portfolio-read-btn">
                                                 <a
                                                     className="portfolio-page-link"
                                                     onClick={() =>
-                                                        navigate(`/portfolio-detail-page/${item.id}`)
+                                                        navigate(`/portfolio-detail/${item.id}`)
                                                     }
                                                 >
                                                     Learn More
                                                     <i className="bi bi-arrow-right"></i>
                                                 </a>
+                                            </div> */}
+                                            <div className="portfolio-read-btn">
+                                                <span className="portfolio-page-link">
+                                                    Learn More
+                                                    <i className="bi bi-arrow-right"></i>
+                                                </span>
                                             </div>
                                         </div>
                                     </div>

@@ -44,7 +44,12 @@ const ServicesCard = () => {
                             data-aos="fade-up"
                             data-aos-delay={(index + 1) * 100}
                         >
-                            <div className="service-page-card">
+                            <div className="service-page-card cursor-pointer"
+                                onClick={() => {
+                                    const url = `${import.meta.env.BASE_URL}servicesdetail/${service.id}`;
+                                    window.open(url, "_blank", "noopener,noreferrer");
+                                }}
+                            >
 
                                 {/* ICON */}
                                 <div className="service-page-icon">
@@ -71,7 +76,7 @@ const ServicesCard = () => {
                                 <a
                                     className="service-page-link"
                                     onClick={() =>
-                                        navigate(`/servicesdetailpage/${service.id}`)
+                                        navigate(`/servicesdetail/${service.id}`)
                                     }
                                 >
                                     Learn More <i className="bi bi-arrow-right"></i>

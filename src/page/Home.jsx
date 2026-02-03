@@ -40,7 +40,7 @@ let Homepage = () => {
                             {/* <!-- Hero Headline --> */}
                             <div className="hero-content" data-aos="fade-up">
                                 <h1 className="hero-title">
-                                    <span className="hero-title-line">Design  <span className="hero-title-accent"> Deploy</span> Develop</span>
+                                    <span className="hero-title-line">Design  <span className="hero-title-accent">Develop</span> Deploy</span>
 
                                 </h1>
                             </div>
@@ -211,7 +211,7 @@ let Homepage = () => {
                         <div className="service-card service-card-tall" data-aos="fade-up" data-aos-delay="100">
                             <div className="service-header">
                                 <h3 className="service-title">Mobile app <br />Development</h3>
-                                <a href="#" className="service-arrow">
+                                <a href="/Mohit/mobidudes/servicesdetail/25" className="service-arrow">
                                     <i className="bi bi-arrow-up-right"></i>
                                 </a>
                             </div>
@@ -226,7 +226,7 @@ let Homepage = () => {
                             <div className="service-card service-card-half" data-aos="fade-up" data-aos-delay="200">
                                 <div className="service-header">
                                     <h3 className="service-title">UI/UX Design</h3>
-                                    <a href="#" className="service-arrow">
+                                    <a href="/Mohit/mobidudes/servicesdetail/26" className="service-arrow">
                                         <i className="bi bi-arrow-up-right"></i>
                                     </a>
                                 </div>
@@ -238,7 +238,7 @@ let Homepage = () => {
                             <div className="service-card service-card-half" data-aos="fade-up" data-aos-delay="300">
                                 <div className="service-header">
                                     <h3 className="service-title">Web development</h3>
-                                    <a href="#" className="service-arrow">
+                                    <a href="/Mohit/mobidudes/servicesdetail/29" className="service-arrow">
                                         <i className="bi bi-arrow-up-right"></i>
                                     </a>
                                 </div>
@@ -252,7 +252,7 @@ let Homepage = () => {
                             <div className="service-card service-card-half" data-aos="fade-up" data-aos-delay="200">
                                 <div className="service-header">
                                     <h3 className="service-title">Digital marketing / SEO</h3>
-                                    <a href="#" className="service-arrow">
+                                    <a href="/Mohit/mobidudes/servicesdetail/30" className="service-arrow">
                                         <i className="bi bi-arrow-up-right"></i>
                                     </a>
                                 </div>
@@ -264,7 +264,7 @@ let Homepage = () => {
                             <div className="service-card service-card-half" data-aos="fade-up" data-aos-delay="300">
                                 <div className="service-header">
                                     <h3 className="service-title">Softwere Testing ( Manual )</h3>
-                                    <a href="#" className="service-arrow">
+                                    <a href="/Mohit/mobidudes/servicesdetail/27" className="service-arrow">
                                         <i className="bi bi-arrow-up-right"></i>
                                     </a>
                                 </div>

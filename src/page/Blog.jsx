@@ -112,7 +112,11 @@ const Blogpage = () => {
                                 <div key={blog.id} className="col-lg-4 col-md-6 portfolio-item">
                                     <div
                                         className="portfolio-card"
-                                        onClick={() => navigate(`/blogdetailpage/${blog.id}`)}
+                                        // onClick={() => navigate(`/blogdetail/${blog.id}`)}
+                                        onClick={() => {
+                                            const url = `${import.meta.env.BASE_URL}blogdetail/${blog.id}`;
+                                            window.open(url, "_blank", "noopener,noreferrer");
+                                        }}
                                     >
                                         <div className="portfolio-image">
                                             <img

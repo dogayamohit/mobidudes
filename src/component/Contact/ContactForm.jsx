@@ -44,6 +44,12 @@ const ContactForm = () => {
     /* ---------- HANDLERS ---------- */
     const handleChange = (e) => {
         const { name, value } = e.target;
+
+        // Allow only digits & max 15 length
+        if (name === "mobile" && !/^\d{0,15}$/.test(value)) return;
+
+        if (name === "budget" && !/^\d*$/.test(value)) return;
+
         setForm((prev) => ({ ...prev, [name]: value }));
     };
 
@@ -166,13 +172,16 @@ const ContactForm = () => {
                         <div className="col-md-6">
                             <label>Phone</label>
                             <input
+                                type="tel"
                                 className="form-control"
                                 placeholder="9876543210"
                                 name="mobile"
                                 value={form.mobile}
                                 required
+                                maxLength={15}
                                 onChange={handleChange}
                             />
+
 
                         </div>
 
@@ -182,11 +191,16 @@ const ContactForm = () => {
                                 className="form-control"
                                 placeholder="Your Budget"
                                 name="budget"
+                                inputMode="numeric"
                                 value={form.budget}
                                 required
-                                onChange={handleChange}
+                                onChange={(e) => {
+                                    const onlyNumbers = e.target.value.replace(/\D/g, "");
+                                    handleChange({
+                                        target: { name: "budget", value: onlyNumbers }
+                                    });
+                                }}
                             />
-
                         </div>
 
                         <div className="col-md-6">

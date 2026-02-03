@@ -39,12 +39,53 @@ let Footer = () => {
                                 <div className="col-md-3 mb-4 mb-md-0" data-aos="fade-up" data-aos-delay="100">
                                     <h6 className="footer-heading">Our Services</h6>
                                     <ul className="footer-links">
-                                        <li><a onClick={() => Navigate("/services")}>Services</a></li>
-                                        <li><a onClick={() => Navigate("/aboutpage")}>About</a></li>
-                                        <li><a onClick={() => Navigate("/careers")}>Careers</a></li>
-                                        <li><a onClick={() => Navigate("/blog")}>Blog</a></li>
-                                        <li><a onClick={() => Navigate("/contact")}>Contact</a></li>
+                                        <li>
+                                            <a
+                                                href={`${import.meta.env.BASE_URL}services`}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                            >
+                                                Services
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a
+                                                href={`${import.meta.env.BASE_URL}about`}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                            >
+                                                About
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a
+                                                href={`${import.meta.env.BASE_URL}careers`}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                            >
+                                                Careers
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a
+                                                href={`${import.meta.env.BASE_URL}blog`}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                            >
+                                                Blog
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a
+                                                href={`${import.meta.env.BASE_URL}contact`}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                            >
+                                                Contact
+                                            </a>
+                                        </li>
                                     </ul>
+
                                 </div>
 
                                 {/* <!-- Contact Info --> */}
@@ -71,7 +112,7 @@ let Footer = () => {
                                     <h6 className="footer-heading">Social Links</h6>
                                     <div className="">
                                         <ul className="social-links">
-                                            <li><a href="https://www.linkedin.com/company/cloudwapp" aria-label="LinkedIn" target="_blank">
+                                            <li><a href="https://in.linkedin.com/company/mobidudes-technologies-pvt-ltd" aria-label="LinkedIn" target="_blank">
                                                 <i className="bi bi-linkedin"></i></a>
                                             </li>
                                             <li>
@@ -81,8 +122,8 @@ let Footer = () => {
                                             <li>
                                                 <a href="https://www.facebook.com/Cloudwapp/" target="_blank" aria-label="Facebook">
                                                     <i className="bi bi-facebook"></i>
-                                                </a></li>
-
+                                                </a>
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>

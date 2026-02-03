@@ -3,6 +3,31 @@ import { useEffect, useState } from "react";
 import { getAboutVideoById } from "../api/about";
 import { useNavigate } from "react-router-dom";
 import PageHeader from "../layout/PageHeader.jsx";
+
+const Counter = ({ target, duration = 2000 }) => {
+    const [count, setCount] = useState(0);
+
+    useEffect(() => {
+        let start = 0;
+        const increment = target / (duration / 16);
+
+        const counter = setInterval(() => {
+            start += increment;
+            if (start >= target) {
+                setCount(target);
+                clearInterval(counter);
+            } else {
+                setCount(Math.ceil(start));
+            }
+        }, 16);
+
+        return () => clearInterval(counter);
+    }, [target, duration]);
+
+    return <span className="stat-number">{count}</span>;
+};
+
+
 let Aboutpage = () => {
     let Navigate = useNavigate();
 
@@ -23,6 +48,7 @@ let Aboutpage = () => {
         fetchVideo();
     }, []);
 
+
     const DEFAULT_VIDEO =
         "https://cloudwapp.com/public/uploads/about/video/1755697237_Cloudwapp%20promotional%20video%20(1).mp4";
 
@@ -30,19 +56,22 @@ let Aboutpage = () => {
         <>
             {/* <!-- ========== PAGE HEADER ========== --> */}
             <PageHeader title="About Us" currentPage="About" />
+
             {/* services main */}
             <section className="careers-intro-section">
                 <div className="container">
-                    <div className="row  justify-content-center ">
+                    <div className="row justify-content-center ">
                         <div className="col-lg-6" data-aos="fade-right">
 
                             <h2 className="section-title-large">Discover Who We Truly Are</h2>
                             <p className="section-title-pera ">
-                                Learn more about our journey, core values, and technical expertise that shape who we are as a digital solutions company. Driven by innovation and a commitment to excellence, we deliver impactful and scalable solutions designed to help businesses succeed in the digital landscape.
-
+                                Learn more about our journey, core values, and technical expertise that define us as a forward-thinking digital solutions company. From concept to execution, we combine strategy, creativity, and technology to craft solutions that are not only visually compelling but also performance-driven and future-ready.
                             </p>
                             <p className="section-title-pera ">
-                                Our focus on quality, creativity, and results enables us to build long-term partnerships and create meaningful digital experiences that drive growth and success.
+                                Driven by innovation and a relentless commitment to excellence, we help businesses navigate the ever-evolving digital landscape with confidence. Our team believes in building scalable, secure, and user-centric solutions that solve real-world problems and deliver measurable results.
+                            </p>
+                            <p className="section-title-pera ">
+                                Quality, creativity, and transparency are at the heart of everything we do. By fostering strong collaboration and understanding our clients’ unique goals, we create meaningful digital experiences that inspire trust, accelerate growth, and build long-term partnerships. Our mission is simple: to turn ideas into impactful digital realities that move businesses forward.
                             </p>
 
                         </div>
@@ -55,22 +84,24 @@ let Aboutpage = () => {
                                     <div className="row g-4">
                                         <div className="col-lg-4 col-md-6" data-aos="fade-up">
                                             <div className="portfolio-stat-card">
-                                                <span className="stat-number counter" data-target="500">10</span>+
+                                                <Counter target={10} />+
                                                 <span className="stat-label">Proud clients</span>
                                             </div>
                                         </div>
 
-                                        <div className="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                                        <div className="col-lg-4 col-md-6" data-aos="fade-up">
                                             <div className="portfolio-stat-card">
-                                                <span className="stat-number counter" data-target="98">30</span>+
+                                                <Counter target={98} />+
                                                 <span className="stat-label">Completed initiatives</span>
                                             </div>
+
                                         </div>
-                                        <div className="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                                        <div className="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="0">
                                             <div className="portfolio-stat-card">
-                                                <span className="stat-number counter" data-target="25">20</span>+
+                                                <Counter target={25} />+
                                                 <span className="stat-label">Trophies</span>
                                             </div>
+
                                         </div>
                                     </div>
                                 </div>
@@ -108,6 +139,7 @@ let Aboutpage = () => {
                 </div>
             </section>
 
+
             {/* 2 */}
             <section className="careers-intro-section">
                 <div className="container">
@@ -133,6 +165,8 @@ let Aboutpage = () => {
                     </div>
                 </div>
             </section>
+
+
             {/* industries-page-section */}
             <section className="industries-page-section">
                 <div className="container">

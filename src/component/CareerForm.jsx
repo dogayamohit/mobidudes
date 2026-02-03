@@ -180,12 +180,17 @@ const CareerForm = ({ selectedVacancyId }) => {
                             <label>Phone</label>
                             <input
                                 className="form-control"
-                                placeholder="+91 9876543210"
-                                value={form.phone}
+                                placeholder="9876543210"
                                 name="phone"
+                                value={form.phone}
+                                onChange={(e) => {
+                                    const value = e.target.value.replace(/\D/g, "");
+                                    setForm({ ...form, phone: value });
+                                }}
+                                maxLength={10}
                                 required
-                                onChange={handleChange}
                             />
+
                         </div>
 
                         {/* Experience */}
