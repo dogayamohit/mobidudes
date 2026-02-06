@@ -1692,7 +1692,20 @@ button.icon-toggle {
   .service-detail-content h2 {
 
     font-size: 23px !important;
+  }
 
+  .timeline-item {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgb(158 166 237);
+  }
+
+  .timelinebutton {
+    padding-top: 20px;
+    margin-left: 0px !important;
   }
 }
 
@@ -3637,6 +3650,7 @@ button.icon-toggle {
 
 .timeline-item {
   display: flex;
+  /* justify-content: space-between; */
   gap: 25px;
   margin-bottom: 30px;
   padding-bottom: 20px;
@@ -4494,6 +4508,10 @@ button.icon-toggle {
 @media (max-width: 768px) {
   .calc-options {
     grid-template-columns: 1fr;
+  }
+
+  .contact-form-wrapper {
+    padding: 20px;
   }
 }
 

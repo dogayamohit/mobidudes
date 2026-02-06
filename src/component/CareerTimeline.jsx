@@ -46,41 +46,47 @@ const CareersTimeline = ({ onApply }) => {
 
   return (
     <section className="service-details-section">
-      <div className="container">
-        <div className="row">
-          <div className="col-lg-12">
-            <div className="process-timeline">
-              {vacancies.map((job, index) => (
-                <div className="timeline-item" key={job.id}>
-                  <div className="timeline-number">
-                    {String(index + 1).padStart(2, "0")}
-                  </div>
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-12">
+              <div className="process-timeline">
+                {vacancies.map((job, index) => (
+                  <div className="timeline-item" key={job.id}>
+                    <div className="d-flex" >
 
-                  <div className="timeline-content">
-                    <h4 className="d-flex gap-2 align-items-center">
-                      {job.job_name}
-                      <p>({job.open_roles} open roles)</p>
-                    </h4>
-                    <p>Ex. {job.experience}</p>
-                  </div>
+                      <div className="timeline-number">
+                          {String(index + 1).padStart(2, "0")}
+                      </div>
 
-                  {/* <div className="timelinebutton">
-                    <a href="#career-form">Apply</a>
-                  </div> */}
-                  <div className="timelinebutton">
-                    <a
-                      href="#career-form"
-                      onClick={() => onApply(job.id)}
-                    >
-                      Apply
-                    </a>
-                  </div>
+                      <div className="timeline-content">
+                          <h4 className="d-flex gap-2 align-items-center">
+                              {job.job_name}
+                            <p>({job.open_roles} open roles)</p>
+                          </h4>
 
-                </div>
-              ))}
+                          <p>Ex. {job.experience}</p>
+                      </div>
+                    </div>
+
+                    {/* <div className="timelinebutton">
+                      <a href="#career-form">Apply</a>
+                    </div> */}
+
+                    <div className="timelinebutton">
+                      <a
+                        href="#career-form"
+                        onClick={() => onApply(job.id)}
+                        className="d-block d-md-inline-block text-center w-10 w-md-auto"
+                      >
+                        Apply
+                      </a>
+                    </div>
+
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
-        </div>
       </div>
     </section>
   );
